@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #020617;
+      background: radial-gradient(circle at top, #0f172a, #020617);
       color: white;
     }
 
@@ -67,8 +67,11 @@
       text-shadow: 0 0 25px cyan;
     }
 
-    .hero p {
+    #changing-text {
       color: #cbd5e1;
+      font-size: 18px;
+      transition: 0.4s;
+      height: 25px;
     }
 
     /* BUTTON */
@@ -104,8 +107,9 @@
     /* PROJECTS */
     .projects {
       display: grid;
-      gap: 25px;
+      gap: 30px;
       margin-top: 40px;
+      align-items: stretch;
     }
 
     .card {
@@ -115,22 +119,23 @@
       text-align: center;
       transition: 0.4s;
       overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    /* 🔥 CARD HOVER */
     .card:hover {
       transform: translateY(-12px) scale(1.03);
       box-shadow: 0 0 30px cyan;
     }
 
-    /* VIDEO */
-    .card video {
+    .card img {
       width: 100%;
       border-radius: 10px;
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
-    /* BUTTON INSIDE CARD */
     .card a {
       display: inline-block;
       margin-top: 15px;
@@ -168,7 +173,6 @@
 <div class="navbar">
   <div class="nav-content">
 
-    <!-- SVG LOGO -->
     <div class="logo">
       <svg width="40" height="40" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" fill="cyan"/>
@@ -188,7 +192,7 @@
 <!-- HERO -->
 <div class="hero">
   <h1>Hanbal</h1>
-  <p>Video Editor & Web Developer</p>
+  <p id="changing-text">Video Editor</p>
   <a href="mailto:hanbaltahir@gmail.com" class="btn">Hire Me</a>
 </div>
 
@@ -205,47 +209,50 @@
 
   <div class="projects">
 
-    <!-- 🎬 VIDEO EDITING -->
     <div class="card">
       <h3>🎬 Video Editing</h3>
-
-      <video id="video1" muted loop>
-        <source src="video1.mp4" type="video/mp4">
-      </video>
-
       <p>Short-form edits for Reels & TikTok.</p>
-
+      <img src="https://via.placeholder.com/400x200">
       <a href="#">View Project</a>
     </div>
 
-    <!-- 🌐 WEBSITE -->
     <div class="card">
       <h3>🌐 Personal Website</h3>
       <p>Modern portfolio built using HTML & CSS.</p>
+      <img src="https://via.placeholder.com/400x200">
       <a href="#">View Project</a>
     </div>
 
   </div>
 
-  <!-- CTA -->
   <div class="bottom-btn">
     <a href="mailto:hanbaltahir@gmail.com" class="btn">Contact Me</a>
   </div>
 
 </div>
 
-<!-- 🎬 VIDEO HOVER SCRIPT -->
+<!-- 🔥 TEXT ANIMATION -->
 <script>
-const video = document.getElementById("video1");
-const card = video.closest(".card");
+const roles = [
+  "Video Editor",
+  "Web Developer",
+  "Freelancer",
+  "Content Creator"
+];
 
-card.addEventListener("mouseenter", () => {
-  video.play();
-});
+let i = 0;
+const text = document.getElementById("changing-text");
 
-card.addEventListener("mouseleave", () => {
-  video.pause();
-});
+setInterval(() => {
+  i = (i + 1) % roles.length;
+  text.style.opacity = 0;
+
+  setTimeout(() => {
+    text.textContent = roles[i];
+    text.style.opacity = 1;
+  }, 300);
+
+}, 2000);
 </script>
 
 </body>
