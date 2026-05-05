@@ -3,16 +3,49 @@
 <head>
   <title>Hanbal Portfolio</title>
 
+  <link rel="icon" href="https://via.placeholder.com/32">
+
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0f172a;
+      background: #020617;
       color: white;
+      cursor: none;
+    }
+
+    /* 🔥 PARTICLES BACKGROUND */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* 🔥 LOADER */
+    #loader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #loader h1 {
+      color: cyan;
+      font-size: 50px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.3; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
+      100% { opacity: 0.3; transform: scale(0.9); }
     }
 
     .container {
@@ -22,11 +55,12 @@
       padding: 20px;
     }
 
-    /* 🔥 NAVBAR */
+    /* NAVBAR */
     .navbar {
       position: sticky;
       top: 0;
-      background: #0f172a;
+      background: rgba(15,23,42,0.8);
+      backdrop-filter: blur(10px);
       padding: 15px 0;
       border-bottom: 1px solid #1e293b;
       z-index: 100;
@@ -41,68 +75,73 @@
       margin: auto;
     }
 
-    .logo {
-      color: cyan;
-      font-weight: bold;
-      font-size: 20px;
+    /* LOGO */
+    .logo svg {
+      animation: logoGlow 2s infinite;
+    }
+
+    @keyframes logoGlow {
+      0% { filter: drop-shadow(0 0 5px cyan); }
+      50% { filter: drop-shadow(0 0 15px cyan); }
+      100% { filter: drop-shadow(0 0 5px cyan); }
     }
 
     .nav-links a {
-      margin-left: 20px;
+      margin-left: 30px;
       color: white;
       text-decoration: none;
+      position: relative;
     }
 
-    .nav-links a:hover {
-      color: cyan;
-    }
-
-    /* 🔥 HERO */
-    .hero {
-      text-align: center;
-      padding: 100px 20px 60px;
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      color: cyan;
-      margin-bottom: 10px;
-      text-shadow: 0 0 20px rgba(0,255,255,0.5);
-    }
-
-    .hero p {
-      color: #cbd5e1;
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-
-    /* 🔥 BUTTON */
-    .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, cyan, #22d3ee);
-      color: black;
-      padding: 14px 28px;
-      border-radius: 10px;
-      font-weight: bold;
-      text-decoration: none;
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: cyan;
       transition: 0.3s;
     }
 
-    .btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
-    /* SECTIONS */
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      color: cyan;
+    }
+
+    #typing {
+      font-size: 20px;
+      color: #cbd5e1;
+      height: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: cyan;
+      color: black;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+
     h2 {
       text-align: center;
       margin-top: 60px;
     }
 
-    /* 🔥 PROJECT GRID */
     .projects {
       display: grid;
-      grid-template-columns: 1fr;
       gap: 20px;
       margin-top: 30px;
     }
@@ -111,12 +150,10 @@
       background: #1e293b;
       padding: 30px;
       border-radius: 20px;
-      transition: 0.3s;
-      text-align: center;
-
-      /* animation start state */
       opacity: 0;
       transform: translateY(30px);
+      transition: 0.3s;
+      text-align: center;
     }
 
     .card.show {
@@ -124,35 +161,26 @@
       transform: translateY(0);
     }
 
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-    }
-
-    .card p {
-      color: #cbd5e1;
-    }
-
-    .card a {
-      color: cyan;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
-    /* CTA */
     .bottom-btn {
       text-align: center;
-      margin: 60px 0;
+      margin: 60px;
     }
 
-    /* RESPONSIVE */
-    @media (min-width: 700px) {
-      .projects {
-        grid-template-columns: 1fr 1fr;
-      }
+    @media (min-width:700px){
+      .projects { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* CURSOR */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: cyan;
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: 0 0 15px cyan;
+      transform: translate(-50%, -50%);
+      z-index: 999;
     }
 
   </style>
@@ -160,75 +188,125 @@
 
 <body>
 
-  <!-- 🔥 NAVBAR -->
-  <div class="navbar">
-    <div class="nav-content">
-      <div class="logo">Hanbal</div>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="mailto:hanbaltahir@gmail.com">Contact</a>
-      </div>
-    </div>
-  </div>
+<!-- 🔥 LOADER -->
+<div id="loader"><h1>HT</h1></div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <h1>Hanbal</h1>
-    <p>Video Editor & Web Developer</p>
-    <a href="mailto:hanbaltahir@gmail.com?subject=Work Inquiry" class="btn">
-      Hire Me
-    </a>
-  </div>
+<!-- 🔥 PARTICLES -->
+<div id="particles-js"></div>
 
-  <div class="container">
+<!-- CURSOR -->
+<div class="cursor"></div>
 
-    <!-- ABOUT -->
-    <h2 id="about">About Me</h2>
-    <p style="text-align:center; max-width:600px; margin:auto;">
-      I am learning freelancing, building websites, and editing short-form videos.
-    </p>
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="nav-content">
 
-    <!-- PROJECTS -->
-    <h2 id="projects">My Projects</h2>
-
-    <div class="projects">
-
-      <div class="card">
-        <h3>🎬 Video Editing</h3>
-        <p>Short-form videos for Reels, TikTok & YouTube Shorts.</p>
-      </div>
-
-      <div class="card">
-        <h3>🌐 My First Website</h3>
-        <p>A simple portfolio built using HTML & CSS.</p>
-        <a href="#" target="_blank">View Project</a>
-      </div>
-
+    <div class="logo">
+      <svg width="40" height="40" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%">
+            <stop offset="0%" stop-color="cyan"/>
+            <stop offset="100%" stop-color="#22d3ee"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" fill="url(#grad)"/>
+        <text x="50%" y="58%" text-anchor="middle"
+          font-size="36" fill="black" font-weight="bold">HT</text>
+      </svg>
     </div>
 
-    <!-- CTA -->
-    <div class="bottom-btn">
-      <a href="mailto:hanbaltahir@gmail.com?subject=Work Inquiry" class="btn">
-        Let's Work Together
-      </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="mailto:hanbaltahir@gmail.com">Contact</a>
     </div>
 
   </div>
+</div>
 
-  <!-- 🔥 SCROLL ANIMATION SCRIPT -->
-  <script>
-    const cards = document.querySelectorAll('.card');
+<!-- HERO -->
+<div class="hero">
+  <h1>Hanbal</h1>
+  <p id="typing"></p>
+  <a href="mailto:hanbaltahir@gmail.com" class="btn">Hire Me</a>
+</div>
 
-    window.addEventListener('scroll', () => {
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          card.classList.add('show');
-        }
-      });
-    });
-  </script>
+<div class="container">
+
+  <h2 id="about">About Me</h2>
+  <p style="text-align:center;">I create videos & websites.</p>
+
+  <h2 id="projects">Projects</h2>
+
+  <div class="projects">
+    <div class="card">
+      <h3>🎬 Video Editing</h3>
+    </div>
+
+    <div class="card">
+      <h3>🌐 Portfolio</h3>
+      <a href="https://hanbaltahir-prog.github.io/portfolio/">View</a>
+    </div>
+  </div>
+
+  <div class="bottom-btn">
+    <a href="mailto:hanbaltahir@gmail.com" class="btn">Contact Me</a>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script>
+/* loader */
+window.addEventListener("load", ()=>{
+  document.getElementById("loader").style.display="none";
+});
+
+/* typing */
+const text=["Video Editor","Web Developer","Freelancer"];
+let i=0,j=0,cur="",del=false;
+function type(){
+  let el=document.getElementById("typing");
+  if(!del && j<text[i].length){cur+=text[i][j++];}
+  else if(del && j>0){cur=cur.slice(0,-1);j--;}
+  el.textContent=cur;
+  if(j===text[i].length){del=true;setTimeout(type,1000);return;}
+  if(j===0 && del){del=false;i=(i+1)%text.length;}
+  setTimeout(type,del?50:100);
+}
+type();
+
+/* scroll */
+document.querySelectorAll('.card').forEach(c=>{
+  window.addEventListener('scroll',()=>{
+    if(c.getBoundingClientRect().top<window.innerHeight-50){
+      c.classList.add('show');
+    }
+  });
+});
+
+/* cursor */
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+  cursor.style.left=e.clientX+"px";
+  cursor.style.top=e.clientY+"px";
+});
+
+/* particles */
+particlesJS("particles-js",{
+  particles:{
+    number:{value:60},
+    size:{value:3},
+    color:{value:"#00ffff"},
+    line_linked:{enable:true,color:"#00ffff"},
+    move:{speed:2}
+  }
+});
+</script>
+
+</body>
+</html>
 
 </body>
 </html>
