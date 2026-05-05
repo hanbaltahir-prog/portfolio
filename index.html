@@ -9,50 +9,66 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #0f172a, #020617);
+      background: transparent;
       color: white;
+      overflow-x: hidden;
     }
 
-    /* NAVBAR */
+    /* INTRO SCREEN */
+    #intro {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #020617;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 2s;
+    }
+
+    #intro svg {
+      width: 80px;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 5px cyan); }
+      to { filter: drop-shadow(0 0 25px cyan); }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* PARTICLES */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+    }
+
+    /* NAV */
     .navbar {
       position: sticky;
       top: 0;
-      background: rgba(2, 6, 23, 0.85);
+      background: rgba(2,6,23,0.8);
       backdrop-filter: blur(10px);
-      padding: 15px 0;
-      border-bottom: 1px solid #1e293b;
+      padding: 15px;
     }
 
     .nav-content {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       width: 90%;
       max-width: 1100px;
       margin: auto;
-    }
-
-    /* LOGO */
-    .logo svg {
-      border-radius: 50%;
-      box-shadow: 0 0 15px cyan;
-      transition: 0.3s;
-    }
-
-    .logo svg:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 35px cyan;
-    }
-
-    .nav-links a {
-      margin-left: 25px;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: cyan;
     }
 
     /* HERO */
@@ -64,104 +80,54 @@
     .hero h1 {
       font-size: 56px;
       color: cyan;
-      text-shadow: 0 0 25px cyan;
     }
 
-    #changing-text {
+    #typing {
       color: #cbd5e1;
-      font-size: 18px;
-      transition: 0.4s;
       height: 25px;
     }
 
-    /* BUTTON */
     .btn {
-      display: inline-block;
-      margin-top: 25px;
+      margin-top: 20px;
       padding: 14px 30px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, cyan, #22d3ee);
+      background: cyan;
       color: black;
-      font-weight: bold;
       text-decoration: none;
-      transition: 0.3s;
+      display: inline-block;
     }
 
-    .btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px cyan;
-    }
-
-    /* CONTAINER */
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-top: 80px;
-    }
-
-    /* PROJECTS */
+    /* CARDS */
     .projects {
       display: grid;
       gap: 30px;
-      margin-top: 40px;
-      align-items: stretch;
+      padding: 40px;
     }
 
     .card {
       background: #1e293b;
-      padding: 25px;
+      padding: 20px;
       border-radius: 20px;
-      text-align: center;
-      transition: 0.4s;
-      overflow: hidden;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.6s;
+    }
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .card:hover {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 0 30px cyan;
+      box-shadow: 0 0 20px cyan;
     }
 
     .card img {
       width: 100%;
       border-radius: 10px;
-      margin-top: 15px;
     }
 
-    .card a {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, cyan, #22d3ee);
-      color: black;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .card a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px cyan;
-    }
-
-    .bottom-btn {
-      text-align: center;
-      margin: 60px 0;
-    }
-
-    @media (min-width:700px){
-      .projects {
-        grid-template-columns: 1fr 1fr;
-      }
+    @media(min-width:700px){
+      .projects { grid-template-columns: 1fr 1fr; }
     }
 
   </style>
@@ -169,90 +135,98 @@
 
 <body>
 
-<!-- NAVBAR -->
+<!-- 🔥 INTRO -->
+<div id="intro">
+  <svg viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="45" fill="cyan"/>
+    <text x="50%" y="55%" text-anchor="middle" fill="black" font-size="40">H</text>
+  </svg>
+</div>
+
+<div id="particles-js"></div>
+
+<!-- NAV -->
 <div class="navbar">
   <div class="nav-content">
-
-    <div class="logo">
-      <svg width="40" height="40" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" fill="cyan"/>
-        <text x="50%" y="55%" text-anchor="middle" fill="black" font-size="40" dy=".3em">H</text>
-      </svg>
-    </div>
-
-    <div class="nav-links">
-      <a href="#about">About</a>
+    <div>H</div>
+    <div>
       <a href="#projects">Projects</a>
-      <a href="mailto:hanbaltahir@gmail.com">Contact</a>
     </div>
-
   </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
   <h1>Hanbal</h1>
-  <p id="changing-text">Video Editor</p>
-  <a href="mailto:hanbaltahir@gmail.com" class="btn">Hire Me</a>
+  <p id="typing"></p>
+  <a href="#" class="btn">Hire Me</a>
 </div>
 
-<div class="container">
-
-  <!-- ABOUT -->
-  <h2 id="about">About Me</h2>
-  <p style="text-align:center;">
-    I create videos & modern websites.
-  </p>
-
-  <!-- PROJECTS -->
-  <h2 id="projects">Projects</h2>
-
-  <div class="projects">
-
-    <div class="card">
-      <h3>🎬 Video Editing</h3>
-      <p>Short-form edits for Reels & TikTok.</p>
-      <img src="https://via.placeholder.com/400x200">
-      <a href="#">View Project</a>
-    </div>
-
-    <div class="card">
-      <h3>🌐 Personal Website</h3>
-      <p>Modern portfolio built using HTML & CSS.</p>
-      <img src="https://via.placeholder.com/400x200">
-      <a href="#">View Project</a>
-    </div>
-
+<!-- PROJECTS -->
+<div class="projects">
+  <div class="card">
+    <h3>🎬 Video Editing</h3>
+    <img src="https://via.placeholder.com/400x200">
   </div>
 
-  <div class="bottom-btn">
-    <a href="mailto:hanbaltahir@gmail.com" class="btn">Contact Me</a>
+  <div class="card">
+    <h3>🌐 Website</h3>
+    <img src="https://via.placeholder.com/400x200">
   </div>
-
 </div>
 
-<!-- 🔥 TEXT ANIMATION -->
+<!-- PARTICLES -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 <script>
-const roles = [
-  "Video Editor",
-  "Web Developer",
-  "Freelancer",
-  "Content Creator"
-];
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 30 }, /* reduced */
+    size: { value: 2 },
+    color: { value: "#00ffff" },
+    line_linked: { enable: true, color: "#00ffff" },
+    move: { speed: 1 }
+  }
+});
+</script>
 
-let i = 0;
-const text = document.getElementById("changing-text");
+<!-- TYPING -->
+<script>
+const words=["Video Editor","Web Developer","Freelancer"];
+let i=0,j=0,current="",del=false;
 
-setInterval(() => {
-  i = (i + 1) % roles.length;
-  text.style.opacity = 0;
+function type(){
+let el=document.getElementById("typing");
 
-  setTimeout(() => {
-    text.textContent = roles[i];
-    text.style.opacity = 1;
-  }, 300);
+if(!del && j<=words[i].length){
+current=words[i].substring(0,j++);
+}
+else if(del && j>=0){
+current=words[i].substring(0,j--);
+}
 
-}, 2000);
+el.textContent=current;
+
+if(j==words[i].length) del=true;
+if(j==0 && del){ del=false; i=(i+1)%words.length;}
+
+setTimeout(type, del?50:100);
+}
+type();
+</script>
+
+<!-- SCROLL -->
+<script>
+const cards=document.querySelectorAll('.card');
+
+window.addEventListener('scroll',()=>{
+cards.forEach(card=>{
+const rect=card.getBoundingClientRect();
+if(rect.top < window.innerHeight-50){
+card.classList.add('show');
+}
+});
+});
 </script>
 
 </body>
