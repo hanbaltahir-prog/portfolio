@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <!-- 🔥 IMPORTANT: FIXES MOBILE SCALING -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Hanbal Portfolio</title>
 
   <style>
@@ -9,28 +13,18 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      color: white;
       background: #020617;
-      overflow-x: hidden;
-    }
-
-    /* PARTICLES BACKGROUND */
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: radial-gradient(circle at top, #0f172a, #020617);
+      color: white;
     }
 
     /* NAVBAR */
     .navbar {
       position: sticky;
       top: 0;
-      background: rgba(2, 6, 23, 0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(2, 6, 23, 0.9);
+      backdrop-filter: blur(10px);
       padding: 15px 0;
-      border-bottom: 1px solid rgba(0,255,255,0.2);
+      border-bottom: 1px solid #1e293b;
       z-index: 100;
     }
 
@@ -43,13 +37,18 @@
       margin: auto;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 18px;
-      color: cyan;
+    /* LOGO */
+    .logo svg {
+      border-radius: 50%;
+      box-shadow: 0 0 15px cyan;
+      transition: 0.3s;
     }
 
-    /* NAV LINKS */
+    .logo svg:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px cyan;
+    }
+
     .nav-links a {
       margin-left: 25px;
       color: white;
@@ -57,40 +56,25 @@
       transition: 0.3s;
     }
 
-    .nav-links a:visited {
-      color: white;
-    }
-
     .nav-links a:hover {
-      color: cyan;
-    }
-
-    /* GLOBAL LINK FIX */
-    a {
-      color: cyan;
-      text-decoration: none;
-    }
-
-    a:visited {
       color: cyan;
     }
 
     /* HERO */
     .hero {
       text-align: center;
-      padding: 120px 20px;
+      padding: 80px 20px;
     }
 
     .hero h1 {
-      font-size: 56px;
+      font-size: clamp(36px, 8vw, 56px); /* 🔥 responsive text */
       color: cyan;
       text-shadow: 0 0 25px cyan;
     }
 
-    #typing {
+    .hero p {
       color: #cbd5e1;
-      height: 25px;
-      margin-top: 10px;
+      font-size: clamp(14px, 3vw, 18px);
     }
 
     /* BUTTON */
@@ -102,12 +86,13 @@
       background: linear-gradient(135deg, cyan, #22d3ee);
       color: black;
       font-weight: bold;
+      text-decoration: none;
       transition: 0.3s;
     }
 
     .btn:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 20px cyan;
+      box-shadow: 0 0 25px cyan;
     }
 
     /* CONTAINER */
@@ -119,19 +104,27 @@
 
     h2 {
       text-align: center;
-      margin-top: 80px;
+      margin-top: 60px;
+      font-size: clamp(22px, 5vw, 32px);
     }
 
-    /* PROJECTS */
+    /* PROJECTS GRID */
     .projects {
       display: grid;
-      gap: 30px;
+      gap: 25px;
       margin-top: 40px;
     }
 
+    @media (min-width:700px){
+      .projects {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* CARDS */
     .card {
       background: #1e293b;
-      padding: 30px;
+      padding: 25px;
       border-radius: 20px;
       text-align: center;
       transition: 0.4s;
@@ -142,21 +135,52 @@
       box-shadow: 0 0 30px cyan;
     }
 
-    .card p {
-      color: #cbd5e1;
-      margin-bottom: 20px;
+    .card video {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
     }
 
+    /* CARD BUTTON */
+    .card a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: linear-gradient(135deg, cyan, #22d3ee);
+      color: black;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .card a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px cyan;
+    }
+
+    /* CONTACT BUTTON */
     .bottom-btn {
       text-align: center;
       margin: 60px 0;
     }
 
-    /* RESPONSIVE */
-    @media (min-width:700px){
-      .projects {
-        grid-template-columns: 1fr 1fr;
+    /* 🔥 MOBILE OPTIMIZATION */
+    @media (max-width: 700px) {
+
+      .nav-links a {
+        margin-left: 15px;
+        font-size: 14px;
       }
+
+      .hero {
+        padding: 60px 15px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
     }
 
   </style>
@@ -164,25 +188,30 @@
 
 <body>
 
-<div id="particles-js"></div>
-
 <!-- NAVBAR -->
 <div class="navbar">
   <div class="nav-content">
-    <div class="logo">H</div>
+
+    <div class="logo">
+      <svg width="40" height="40" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="cyan"/>
+        <text x="50%" y="55%" text-anchor="middle" fill="black" font-size="40" dy=".3em">H</text>
+      </svg>
+    </div>
 
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="mailto:hanbaltahir@gmail.com">Contact</a>
     </div>
+
   </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
   <h1>Hanbal</h1>
-  <p id="typing"></p>
+  <p>Video Editor & Web Developer</p>
   <a href="mailto:hanbaltahir@gmail.com" class="btn">Hire Me</a>
 </div>
 
@@ -199,70 +228,47 @@
 
   <div class="projects">
 
+    <!-- VIDEO -->
     <div class="card">
       <h3>🎬 Video Editing</h3>
+
+      <video id="video1" muted loop>
+        <source src="video1.mp4" type="video/mp4">
+      </video>
+
       <p>Short-form edits for Reels, TikTok & YouTube.</p>
-      <a href="#" class="btn">View Project</a>
+
+      <a href="#">View Project</a>
     </div>
 
+    <!-- WEBSITE -->
     <div class="card">
       <h3>🌐 Website</h3>
       <p>Modern portfolio built using HTML & CSS.</p>
-      <a href="#" class="btn">View Project</a>
+      <a href="#">View Project</a>
     </div>
 
   </div>
 
-  <!-- ✅ CONTACT BUTTON BACK -->
+  <!-- CONTACT -->
   <div class="bottom-btn">
-    <a href="mailto:hanbaltahir@gmail.com" class="btn">
-      Contact Me
-    </a>
+    <a href="mailto:hanbaltahir@gmail.com" class="btn">Contact Me</a>
   </div>
 
 </div>
 
-<!-- PARTICLES -->
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
+<!-- VIDEO HOVER -->
 <script>
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 35 },
-    size: { value: 2 },
-    color: { value: "#00ffff" },
-    line_linked: { enable: true, color: "#00ffff" },
-    move: { speed: 1 }
-  }
+const video = document.getElementById("video1");
+const card = video.closest(".card");
+
+card.addEventListener("mouseenter", () => {
+  video.play();
 });
-</script>
 
-<!-- TYPING EFFECT -->
-<script>
-const words = ["Video Editor", "Web Developer", "Freelancer"];
-let i = 0, j = 0, current = "", deleting = false;
-
-function type() {
-  let el = document.getElementById("typing");
-
-  if (!deleting && j <= words[i].length) {
-    current = words[i].substring(0, j++);
-  } else if (deleting && j >= 0) {
-    current = words[i].substring(0, j--);
-  }
-
-  el.textContent = current;
-
-  if (j == words[i].length) deleting = true;
-  if (j == 0 && deleting) {
-    deleting = false;
-    i = (i + 1) % words.length;
-  }
-
-  setTimeout(type, deleting ? 50 : 100);
-}
-
-type();
+card.addEventListener("mouseleave", () => {
+  video.pause();
+});
 </script>
 
 </body>
