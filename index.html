@@ -15,6 +15,16 @@
       color: white;
     }
 
+    /* 🔥 PARTICLES CANVAS */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
     /* NAVBAR */
     .navbar {
       position: sticky;
@@ -23,7 +33,7 @@
       backdrop-filter: blur(10px);
       padding: 15px 0;
       border-bottom: 1px solid #1e293b;
-      z-index: 100;
+      z-index: 10;
     }
 
     .nav-content {
@@ -35,7 +45,6 @@
       margin: auto;
     }
 
-    /* LOGO */
     .logo svg {
       border-radius: 50%;
       box-shadow: 0 0 15px cyan;
@@ -72,7 +81,6 @@
 
     .hero p {
       color: #cbd5e1;
-      font-size: clamp(14px, 3vw, 18px);
     }
 
     /* BUTTON */
@@ -103,10 +111,9 @@
     h2 {
       text-align: center;
       margin-top: 60px;
-      font-size: clamp(22px, 5vw, 32px);
     }
 
-    /* PROJECTS GRID */
+    /* PROJECTS */
     .projects {
       display: grid;
       gap: 25px;
@@ -119,7 +126,7 @@
       }
     }
 
-    /* CARDS FIXED */
+    /* CARD FIX */
     .card {
       background: #1e293b;
       padding: 25px;
@@ -132,16 +139,12 @@
       justify-content: center;
       align-items: center;
 
-      min-height: 280px; /* 🔥 equal height */
+      min-height: 280px;
     }
 
     .card:hover {
       transform: translateY(-10px) scale(1.03);
       box-shadow: 0 0 30px cyan;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
     }
 
     .card p {
@@ -150,15 +153,10 @@
 
     /* VIDEO FIX */
     .card video {
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 10px;
-      display: none; /* 🔥 hides empty space */
+      display: none;
     }
 
-    /* CARD BUTTON */
     .card a {
-      display: inline-block;
       padding: 12px 25px;
       background: linear-gradient(135deg, cyan, #22d3ee);
       color: black;
@@ -173,34 +171,18 @@
       box-shadow: 0 0 25px cyan;
     }
 
-    /* CONTACT */
     .bottom-btn {
       text-align: center;
       margin: 60px 0;
-    }
-
-    /* MOBILE FIX */
-    @media (max-width: 700px) {
-
-      .nav-links a {
-        margin-left: 15px;
-        font-size: 14px;
-      }
-
-      .hero {
-        padding: 60px 15px;
-      }
-
-      .card {
-        padding: 20px;
-      }
-
     }
 
   </style>
 </head>
 
 <body>
+
+<!-- 🔥 PARTICLES -->
+<canvas id="particles"></canvas>
 
 <!-- NAVBAR -->
 <div class="navbar">
@@ -209,7 +191,7 @@
     <div class="logo">
       <svg width="40" height="40" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" fill="cyan"/>
-        <text x="50%" y="55%" text-anchor="middle" fill="black" font-size="40" dy=".3em">H</text>
+        <text x="50%" y="55%" text-anchor="middle" fill="black" font-size="40">H</text>
       </svg>
     </div>
 
@@ -242,20 +224,12 @@
 
   <div class="projects">
 
-    <!-- VIDEO -->
     <div class="card">
       <h3>🎬 Video Editing</h3>
-
-      <video id="video1" muted loop>
-        <source src="video1.mp4" type="video/mp4">
-      </video>
-
       <p>Short-form edits for Reels, TikTok & YouTube.</p>
-
       <a href="#">View Project</a>
     </div>
 
-    <!-- WEBSITE -->
     <div class="card">
       <h3>🌐 Website</h3>
       <p>Modern portfolio built using HTML & CSS.</p>
@@ -264,12 +238,70 @@
 
   </div>
 
-  <!-- CONTACT -->
   <div class="bottom-btn">
     <a href="mailto:hanbaltahir@gmail.com" class="btn">Contact Me</a>
   </div>
 
 </div>
+
+<!-- 🔥 PARTICLES SCRIPT -->
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5),
+    vy: (Math.random() - 0.5)
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach((p, i) => {
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = "cyan";
+    ctx.fill();
+
+    for (let j = i + 1; j < particles.length; j++) {
+      let p2 = particles[j];
+      let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = "rgba(0,255,255,0.2)";
+        ctx.stroke();
+      }
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
 
 </body>
 </html>
