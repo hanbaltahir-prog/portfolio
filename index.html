@@ -2,9 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <!-- 🔥 IMPORTANT: FIXES MOBILE SCALING -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Hanbal Portfolio</title>
 
   <style>
@@ -67,7 +65,7 @@
     }
 
     .hero h1 {
-      font-size: clamp(36px, 8vw, 56px); /* 🔥 responsive text */
+      font-size: clamp(36px, 8vw, 56px);
       color: cyan;
       text-shadow: 0 0 25px cyan;
     }
@@ -121,13 +119,20 @@
       }
     }
 
-    /* CARDS */
+    /* CARDS FIXED */
     .card {
       background: #1e293b;
       padding: 25px;
       border-radius: 20px;
       text-align: center;
       transition: 0.4s;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      min-height: 280px; /* 🔥 equal height */
     }
 
     .card:hover {
@@ -135,16 +140,25 @@
       box-shadow: 0 0 30px cyan;
     }
 
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin: 10px 0 20px;
+    }
+
+    /* VIDEO FIX */
     .card video {
       width: 100%;
       border-radius: 10px;
       margin-top: 10px;
+      display: none; /* 🔥 hides empty space */
     }
 
     /* CARD BUTTON */
     .card a {
       display: inline-block;
-      margin-top: 20px;
       padding: 12px 25px;
       background: linear-gradient(135deg, cyan, #22d3ee);
       color: black;
@@ -159,13 +173,13 @@
       box-shadow: 0 0 25px cyan;
     }
 
-    /* CONTACT BUTTON */
+    /* CONTACT */
     .bottom-btn {
       text-align: center;
       margin: 60px 0;
     }
 
-    /* 🔥 MOBILE OPTIMIZATION */
+    /* MOBILE FIX */
     @media (max-width: 700px) {
 
       .nav-links a {
@@ -256,20 +270,6 @@
   </div>
 
 </div>
-
-<!-- VIDEO HOVER -->
-<script>
-const video = document.getElementById("video1");
-const card = video.closest(".card");
-
-card.addEventListener("mouseenter", () => {
-  video.play();
-});
-
-card.addEventListener("mouseleave", () => {
-  video.pause();
-});
-</script>
 
 </body>
 </html>
