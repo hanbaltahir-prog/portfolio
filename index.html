@@ -15,7 +15,7 @@
       color: white;
     }
 
-    /* 🔥 PARTICLES CANVAS */
+    /* PARTICLES BACKGROUND */
     #particles {
       position: fixed;
       top: 0;
@@ -79,8 +79,12 @@
       text-shadow: 0 0 25px cyan;
     }
 
-    .hero p {
+    /* 🔥 TYPING TEXT */
+    #typing {
       color: #cbd5e1;
+      font-size: 18px;
+      height: 24px;
+      margin-top: 10px;
     }
 
     /* BUTTON */
@@ -126,7 +130,7 @@
       }
     }
 
-    /* CARD FIX */
+    /* CARD */
     .card {
       background: #1e293b;
       padding: 25px;
@@ -149,11 +153,6 @@
 
     .card p {
       margin: 10px 0 20px;
-    }
-
-    /* VIDEO FIX */
-    .card video {
-      display: none;
     }
 
     .card a {
@@ -181,7 +180,7 @@
 
 <body>
 
-<!-- 🔥 PARTICLES -->
+<!-- PARTICLES -->
 <canvas id="particles"></canvas>
 
 <!-- NAVBAR -->
@@ -207,7 +206,7 @@
 <!-- HERO -->
 <div class="hero">
   <h1>Hanbal</h1>
-  <p>Video Editor & Web Developer</p>
+  <p id="typing"></p>
   <a href="mailto:hanbaltahir@gmail.com" class="btn">Hire Me</a>
 </div>
 
@@ -244,7 +243,7 @@
 
 </div>
 
-<!-- 🔥 PARTICLES SCRIPT -->
+<!-- PARTICLES SCRIPT -->
 <script>
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
@@ -301,6 +300,43 @@ window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+</script>
+
+<!-- 🔥 TYPING EFFECT -->
+<script>
+const words = ["Video Editor", "Web Developer", "Freelancer"];
+let i = 0;
+let j = 0;
+let currentWord = "";
+let isDeleting = false;
+
+function type() {
+  currentWord = words[i];
+
+  if (isDeleting) {
+    j--;
+  } else {
+    j++;
+  }
+
+  document.getElementById("typing").textContent =
+    currentWord.substring(0, j);
+
+  let speed = isDeleting ? 50 : 100;
+
+  if (!isDeleting && j === currentWord.length) {
+    speed = 1500;
+    isDeleting = true;
+  } else if (isDeleting && j === 0) {
+    isDeleting = false;
+    i = (i + 1) % words.length;
+    speed = 500;
+  }
+
+  setTimeout(type, speed);
+}
+
+type();
 </script>
 
 </body>
