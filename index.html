@@ -1,178 +1,411 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hanbal Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>PortfolioX — Premium Portfolio Template</title>
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    html { scroll-behavior: smooth; }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #020617;
-      color: white;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    /* PARTICLES BACKGROUND */
-    #particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+    html{
+      scroll-behavior:smooth;
     }
 
-    /* NAVBAR */
-    .navbar {
-      position: sticky;
-      top: 0;
-      background: rgba(2, 6, 23, 0.9);
-      backdrop-filter: blur(10px);
-      padding: 15px 0;
-      border-bottom: 1px solid #1e293b;
-      z-index: 10;
+    body{
+      font-family:'Inter',sans-serif;
+      background:#050816;
+      color:white;
+      overflow-x:hidden;
     }
 
-    .nav-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
+    /* =========================
+       PARTICLES BACKGROUND
+    ========================== */
+
+    #particles{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      z-index:-1;
     }
 
-    .logo svg {
-      border-radius: 50%;
-      box-shadow: 0 0 15px cyan;
-      transition: 0.3s;
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    .navbar{
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+
+      background:rgba(8,12,30,0.55);
+      backdrop-filter:blur(12px);
+
+      border-bottom:1px solid rgba(255,255,255,0.06);
     }
 
-    .logo svg:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 30px cyan;
+    .nav-container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      padding:18px 0;
     }
 
-    .nav-links a {
-      margin-left: 25px;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
+    /* LOGO */
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      font-size:20px;
+      letter-spacing:0.5px;
     }
 
-    .nav-links a:hover {
-      color: cyan;
+    .logo-icon{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+
+      background:linear-gradient(135deg,#00e5ff,#00bfff);
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      color:#050816;
+      font-weight:800;
+
+      box-shadow:0 0 25px rgba(0,229,255,0.45);
+
+      transition:0.3s;
     }
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
+    .logo:hover .logo-icon{
+      transform:translateY(-2px) scale(1.05);
     }
 
-    .hero h1 {
-      font-size: clamp(36px, 8vw, 56px);
-      color: cyan;
-      text-shadow: 0 0 25px cyan;
+    /* NAV LINKS */
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:30px;
     }
 
-    /* 🔥 TYPING TEXT */
-    #typing {
-      color: #cbd5e1;
-      font-size: 18px;
-      height: 24px;
-      margin-top: 10px;
+    .nav-links a{
+      color:#dbeafe;
+      text-decoration:none;
+      font-size:15px;
+      transition:0.3s;
     }
 
-    /* BUTTON */
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 30px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, cyan, #22d3ee);
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
+    .nav-links a:hover{
+      color:#00e5ff;
     }
 
-    .btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px cyan;
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero{
+      min-height:100vh;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+
+      padding:120px 20px 80px;
     }
 
-    /* CONTAINER */
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
+    .hero-content{
+      max-width:850px;
     }
 
-    h2 {
-      text-align: center;
-      margin-top: 60px;
+    .tag{
+      display:inline-block;
+
+      padding:10px 18px;
+      border-radius:999px;
+
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+
+      color:#cbd5e1;
+      font-size:14px;
+
+      margin-bottom:25px;
     }
 
-    /* PROJECTS */
-    .projects {
-      display: grid;
-      gap: 25px;
-      margin-top: 40px;
+    .hero h1{
+      font-size:clamp(48px,9vw,90px);
+      line-height:1.05;
+
+      font-weight:800;
+
+      margin-bottom:20px;
+
+      background:linear-gradient(to right,#ffffff,#94a3b8);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
 
-    @media (min-width:700px){
-      .projects {
-        grid-template-columns: 1fr 1fr;
+    .hero p{
+      font-size:clamp(16px,3vw,20px);
+      color:#94a3b8;
+      line-height:1.7;
+
+      max-width:700px;
+      margin:auto;
+    }
+
+    /* TYPING */
+
+    #typing{
+      color:#00e5ff;
+      font-weight:600;
+    }
+
+    /* HERO BUTTONS */
+
+    .hero-buttons{
+      margin-top:40px;
+
+      display:flex;
+      justify-content:center;
+      gap:18px;
+
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 28px;
+      border-radius:14px;
+
+      text-decoration:none;
+      font-weight:600;
+
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,#00e5ff,#00bfff);
+      color:#051019;
+
+      box-shadow:0 0 30px rgba(0,229,255,0.25);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 0 40px rgba(0,229,255,0.45);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.12);
+      color:white;
+      background:rgba(255,255,255,0.03);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.07);
+      transform:translateY(-3px);
+    }
+
+    /* =========================
+       SECTION
+    ========================== */
+
+    section{
+      padding:100px 20px;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:clamp(34px,6vw,50px);
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#94a3b8;
+      max-width:650px;
+      margin:auto;
+      line-height:1.7;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================== */
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .project-card{
+      background:rgba(255,255,255,0.04);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:28px;
+
+      overflow:hidden;
+
+      transition:0.35s;
+
+      backdrop-filter:blur(10px);
+    }
+
+    .project-card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(0,229,255,0.35);
+
+      box-shadow:0 0 40px rgba(0,229,255,0.10);
+    }
+
+    .project-image{
+      height:220px;
+
+      background:linear-gradient(
+      135deg,
+      rgba(0,229,255,0.15),
+      rgba(255,255,255,0.03)
+      );
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      font-size:60px;
+    }
+
+    .project-content{
+      padding:28px;
+    }
+
+    .project-content h3{
+      font-size:24px;
+      margin-bottom:14px;
+    }
+
+    .project-content p{
+      color:#94a3b8;
+      line-height:1.7;
+      margin-bottom:24px;
+    }
+
+    .card-btn{
+      display:inline-block;
+
+      text-decoration:none;
+      color:#00e5ff;
+
+      font-weight:600;
+
+      transition:0.3s;
+    }
+
+    .card-btn:hover{
+      transform:translateX(4px);
+    }
+
+    /* =========================
+       CTA
+    ========================== */
+
+    .cta{
+      text-align:center;
+
+      padding:90px 30px;
+
+      border-radius:35px;
+
+      background:linear-gradient(
+      135deg,
+      rgba(0,229,255,0.12),
+      rgba(255,255,255,0.03)
+      );
+
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .cta h2{
+      font-size:clamp(34px,6vw,54px);
+      margin-bottom:20px;
+    }
+
+    .cta p{
+      color:#94a3b8;
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+      margin-bottom:35px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer{
+      text-align:center;
+      padding:35px 20px;
+
+      color:#64748b;
+      font-size:14px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media(max-width:768px){
+
+      .nav-links{
+        gap:18px;
       }
-    }
 
-    /* CARD */
-    .card {
-      background: #1e293b;
-      padding: 25px;
-      border-radius: 20px;
-      text-align: center;
-      transition: 0.4s;
+      .nav-links a{
+        font-size:14px;
+      }
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      .hero{
+        padding-top:150px;
+      }
 
-      min-height: 280px;
-    }
+      .project-image{
+        height:180px;
+      }
 
-    .card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 0 30px cyan;
-    }
-
-    .card p {
-      margin: 10px 0 20px;
-    }
-
-    .card a {
-      padding: 12px 25px;
-      background: linear-gradient(135deg, cyan, #22d3ee);
-      color: black;
-      border-radius: 10px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .card a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px cyan;
-    }
-
-    .bottom-btn {
-      text-align: center;
-      margin: 60px 0;
     }
 
   </style>
@@ -180,164 +413,370 @@
 
 <body>
 
-<!-- PARTICLES -->
-<canvas id="particles"></canvas>
+  <!-- PARTICLES -->
+  <canvas id="particles"></canvas>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="nav-content">
+  <!-- NAVBAR -->
+  <nav class="navbar">
 
-    <div class="logo">
-      <svg width="40" height="40" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" fill="cyan"/>
-        <text x="50%" y="55%" text-anchor="middle" fill="black" font-size="40">H</text>
-      </svg>
+    <div class="nav-container">
+
+      <div class="logo">
+        <div class="logo-icon">P</div>
+        PortfolioX
+      </div>
+
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
     </div>
 
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="mailto:hanbaltahir@gmail.com">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="tag">
+        Premium Portfolio Template
+      </div>
+
+      <!-- EDIT NAME HERE -->
+      <h1>
+        Build Stunning
+        <br>
+        Digital Presence
+      </h1>
+
+      <p>
+        Modern animated portfolio template designed for
+        freelancers, creators, developers and agencies.
+        <br><br>
+        <span id="typing"></span>
+      </p>
+
+      <div class="hero-buttons">
+
+        <!-- EDIT LINK -->
+        <a href="#" class="btn btn-primary">
+          Get Template
+        </a>
+
+        <a href="#projects" class="btn btn-secondary">
+          Live Preview
+        </a>
+
+      </div>
+
     </div>
 
-  </div>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-  <h1>Hanbal</h1>
-  <p id="typing"></p>
-  <a href="mailto:hanbaltahir@gmail.com" class="btn">Hire Me</a>
-</div>
-
-<div class="container">
-
-  <!-- ABOUT -->
-  <h2 id="about">About Me</h2>
-  <p style="text-align:center;">
-    I create videos & modern websites.
-  </p>
+  </section>
 
   <!-- PROJECTS -->
-  <h2 id="projects">Projects</h2>
+  <section id="projects">
 
-  <div class="projects">
+    <div class="container">
 
-    <div class="card">
-      <h3>🎬 Video Editing</h3>
-      <p>Short-form edits for Reels, TikTok & YouTube.</p>
-      <a href="#">View Project</a>
+      <div class="section-title">
+        <h2>Featured Projects</h2>
+
+        <p>
+          Showcase websites, branding, editing work,
+          startup projects or anything you create.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- CARD 1 -->
+        <div class="project-card">
+
+          <div class="project-image">
+            🎬
+          </div>
+
+          <div class="project-content">
+
+            <h3>Video Editing Showcase</h3>
+
+            <p>
+              Perfect for creators, editors and
+              content producers wanting a modern
+              online presence.
+            </p>
+
+            <a href="#" class="card-btn">
+              View Project →
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="project-card">
+
+          <div class="project-image">
+            💻
+          </div>
+
+          <div class="project-content">
+
+            <h3>Modern Website Design</h3>
+
+            <p>
+              Showcase modern web projects,
+              startups, SaaS products and
+              creative concepts beautifully.
+            </p>
+
+            <a href="#" class="card-btn">
+              View Project →
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="project-card">
+
+          <div class="project-image">
+            🚀
+          </div>
+
+          <div class="project-content">
+
+            <h3>Startup Landing Page</h3>
+
+            <p>
+              Elegant sections, animations
+              and layouts designed to look
+              premium and professional.
+            </p>
+
+            <a href="#" class="card-btn">
+              View Project →
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="card">
-      <h3>🌐 Website</h3>
-      <p>Modern portfolio built using HTML & CSS.</p>
-      <a href="#">View Project</a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <div class="container">
+
+      <div class="cta">
+
+        <h2>
+          Designed For Creators
+        </h2>
+
+        <p>
+          PortfolioX is built for freelancers,
+          designers, developers, editors and
+          creators who want a modern premium
+          online portfolio.
+        </p>
+
+        <a href="#" class="btn btn-primary">
+          Purchase Template
+        </a>
+
+      </div>
+
     </div>
 
-  </div>
+  </section>
 
-  <div class="bottom-btn">
-    <a href="mailto:hanbaltahir@gmail.com" class="btn">Contact Me</a>
-  </div>
+  <!-- CONTACT -->
+  <section id="contact">
 
-</div>
+    <div class="container">
 
-<!-- PARTICLES SCRIPT -->
-<script>
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+      <div class="section-title">
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+        <h2>Get In Touch</h2>
 
-let particles = [];
+        <p>
+          Replace this section with your
+          own email, socials or contact form.
+        </p>
 
-for (let i = 0; i < 80; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    vx: (Math.random() - 0.5),
-    vy: (Math.random() - 0.5)
-  });
-}
+      </div>
 
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+      <div style="text-align:center;">
 
-  particles.forEach((p, i) => {
-    p.x += p.vx;
-    p.y += p.vy;
+        <!-- EDIT EMAIL HERE -->
+        <a href="mailto:your@email.com"
+           class="btn btn-secondary">
 
-    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+          your@email.com
 
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = "cyan";
-    ctx.fill();
+        </a>
 
-    for (let j = i + 1; j < particles.length; j++) {
-      let p2 = particles[j];
-      let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      </div>
 
-      if (dist < 120) {
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.strokeStyle = "rgba(0,255,255,0.2)";
-        ctx.stroke();
-      }
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    © 2026 PortfolioX Template.
+    Built for creators & freelancers.
+
+  </footer>
+
+  <!-- PARTICLES SCRIPT -->
+  <script>
+
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    for(let i=0;i<60;i++){
+
+      particles.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        vx:(Math.random()-0.5)*0.5,
+        vy:(Math.random()-0.5)*0.5
+      });
+
     }
-  });
 
-  requestAnimationFrame(animate);
-}
+    function animate(){
 
-animate();
+      ctx.clearRect(0,0,canvas.width,canvas.height);
 
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-</script>
+      particles.forEach((p,i)=>{
 
-<!-- 🔥 TYPING EFFECT -->
-<script>
-const words = ["Video Editor", "Web Developer", "Freelancer"];
-let i = 0;
-let j = 0;
-let currentWord = "";
-let isDeleting = false;
+        p.x += p.vx;
+        p.y += p.vy;
 
-function type() {
-  currentWord = words[i];
+        if(p.x<0 || p.x>canvas.width) p.vx *= -1;
+        if(p.y<0 || p.y>canvas.height) p.vy *= -1;
 
-  if (isDeleting) {
-    j--;
-  } else {
-    j++;
-  }
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,2,0,Math.PI*2);
+        ctx.fillStyle="rgba(0,229,255,0.8)";
+        ctx.fill();
 
-  document.getElementById("typing").textContent =
-    currentWord.substring(0, j);
+        for(let j=i+1;j<particles.length;j++){
 
-  let speed = isDeleting ? 50 : 100;
+          let p2 = particles[j];
 
-  if (!isDeleting && j === currentWord.length) {
-    speed = 1500;
-    isDeleting = true;
-  } else if (isDeleting && j === 0) {
-    isDeleting = false;
-    i = (i + 1) % words.length;
-    speed = 500;
-  }
+          let dist = Math.hypot(
+            p.x-p2.x,
+            p.y-p2.y
+          );
 
-  setTimeout(type, speed);
-}
+          if(dist < 120){
 
-type();
-</script>
+            ctx.beginPath();
+            ctx.moveTo(p.x,p.y);
+            ctx.lineTo(p2.x,p2.y);
+
+            ctx.strokeStyle =
+            "rgba(0,229,255,0.08)";
+
+            ctx.stroke();
+
+          }
+
+        }
+
+      });
+
+      requestAnimationFrame(animate);
+
+    }
+
+    animate();
+
+    window.addEventListener("resize",()=>{
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+    });
+
+  </script>
+
+  <!-- TYPING EFFECT -->
+  <script>
+
+    const words = [
+      "Creative Developer",
+      "UI / UX Designer",
+      "Freelancer",
+      "Video Editor"
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    const typing = document.getElementById("typing");
+
+    function typeEffect(){
+
+      const current = words[wordIndex];
+
+      if(!deleting){
+
+        typing.textContent =
+        current.substring(0,charIndex++);
+
+        if(charIndex > current.length){
+
+          deleting = true;
+
+          setTimeout(typeEffect,1200);
+          return;
+
+        }
+
+      }else{
+
+        typing.textContent =
+        current.substring(0,charIndex--);
+
+        if(charIndex < 0){
+
+          deleting = false;
+          wordIndex =
+          (wordIndex+1)%words.length;
+
+        }
+
+      }
+
+      setTimeout(typeEffect,deleting?50:90);
+
+    }
+
+    typeEffect();
+
+  </script>
 
 </body>
 </html>
